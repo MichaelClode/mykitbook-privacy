@@ -3,25 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — MyKitBook</title>
+<title>MyKitBook — Privacy Policy</title>
 <style>
-  :root { --bg:#ffffff; --text:#1d1d1f; --muted:#6e6e73; --line:#e5e5ea; --link:#0066cc; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#111112; --text:#f2f2f2; --muted:#a1a1a6; --line:#2c2c2e; --link:#4da3ff; } }
-  body { margin:0; background:var(--bg); color:var(--text);
-         font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:32px 16px 56px; }
-  h1 { font-size:28px; margin:0 0 4px; }
-  h2 { font-size:19px; margin:28px 0 6px; }
-  .meta { color:var(--muted); margin:0 0 24px; }
-  a { color:var(--link); }
-  .lang { margin-bottom:24px; font-size:15px; }
-  .lang a { margin-right:12px; display:inline-block; }
-  hr { border:0; border-top:1px solid var(--line); margin:48px 0; }
+:root { --bg:#F2F1EE; --card:#FFFFFF; --ink:#111113; --ink2:#5E5E63; --link:#0066CC; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0A0A0B; --card:#161618; --ink:#F5F5F2; --ink2:#A1A1A6; --link:#4DA3FF; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+header { max-width:760px; margin:0 auto; padding:20px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.brand { font-weight:800; font-size:22px; color:var(--ink); }
+.langs { display:flex; gap:4px; flex-wrap:wrap; }
+.langs a { color:var(--ink2); text-decoration:none; font-size:13px; font-weight:600; padding:6px 10px; border-radius:999px; background:var(--card); }
+.langs a.active { background:var(--ink); color:var(--bg); }
+main { max-width:760px; margin:0 auto; padding:0 16px 64px; }
+section { background:var(--card); border-radius:28px; padding:28px 24px; margin-bottom:16px; }
+h1 { font-size:32px; line-height:1.15; margin:0 0 6px; font-weight:800; }
+h2 { font-size:19px; margin:28px 0 6px; }
+.meta { color:var(--ink2); font-size:14px; margin:0 0 20px; }
+a { color:var(--link); }
+.js section { display:none; }
+.js section.shown { display:block; }
 </style>
 </head>
 <body>
+<header>
+  <span class="brand">MyKitBook</span>
+  <nav class="langs">
+    <a href="#en">EN</a><a href="#ru">RU</a><a href="#de">DE</a><a href="#fr">FR</a><a href="#pl">PL</a>
+  </nav>
+</header>
 <main>
-<p class="lang"><a href="#en">English</a><a href="#ru">Русский</a><a href="#de">Deutsch</a><a href="#fr">Français</a><a href="#pl">Polski</a></p>
 
 <section id="en" lang="en">
 <h1>Privacy Policy</h1>
@@ -57,8 +67,6 @@
 <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:michaelclode8@gmail.com">michaelclode8@gmail.com</a>.</p>
 </section>
 
-<hr>
-
 <section id="ru" lang="ru">
 <h1>Политика конфиденциальности</h1>
 <p class="meta">MyKitBook: Дневник путешествий · Последнее обновление: 7 октября 2026 г.</p>
@@ -92,8 +100,6 @@
 <h2>Контакты</h2>
 <p>По вопросам, связанным с настоящей Политикой, пишите на <a href="mailto:michaelclode8@gmail.com">michaelclode8@gmail.com</a>.</p>
 </section>
-
-<hr>
 
 <section id="de" lang="de">
 <h1>Datenschutzerklärung</h1>
@@ -129,8 +135,6 @@
 <p>Bei Fragen zu dieser Datenschutzerklärung wenden Sie sich bitte an <a href="mailto:michaelclode8@gmail.com">michaelclode8@gmail.com</a>.</p>
 </section>
 
-<hr>
-
 <section id="fr" lang="fr">
 <h1>Politique de confidentialité</h1>
 <p class="meta">MyKitBook : Carnet de voyage · Dernière mise à jour : 7 octobre 2026</p>
@@ -165,8 +169,6 @@
 <p>Pour toute question concernant cette politique de confidentialité, contactez-nous à <a href="mailto:michaelclode8@gmail.com">michaelclode8@gmail.com</a>.</p>
 </section>
 
-<hr>
-
 <section id="pl" lang="pl">
 <h1>Polityka prywatności</h1>
 <p class="meta">MyKitBook: Dziennik podróżnika · Ostatnia aktualizacja: 7 października 2026</p>
@@ -200,6 +202,37 @@
 <h2>Kontakt</h2>
 <p>W razie pytań dotyczących niniejszej Polityki prywatności napisz na adres <a href="mailto:michaelclode8@gmail.com">michaelclode8@gmail.com</a>.</p>
 </section>
+
 </main>
+<script>
+(function () {
+  var langs = ['en', 'ru', 'de', 'fr', 'pl'];
+  document.documentElement.classList.add('js');
+  function pick() {
+    var h = location.hash.replace('#', '');
+    if (langs.indexOf(h) >= 0) return h;
+    var nav = navigator.languages || [navigator.language || 'en'];
+    for (var i = 0; i < nav.length; i++) {
+      var c = String(nav[i]).slice(0, 2).toLowerCase();
+      if (langs.indexOf(c) >= 0) return c;
+    }
+    return 'en';
+  }
+  function show() {
+    var l = pick();
+    langs.forEach(function (x) {
+      var s = document.getElementById(x);
+      if (s) s.classList.toggle('shown', x === l);
+    });
+    document.querySelectorAll('.langs a').forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + l);
+    });
+    document.documentElement.lang = l;
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+</script>
 </body>
 </html>
